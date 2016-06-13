@@ -14,25 +14,55 @@
   <script src="nws-marker.js"></script>
 
   <style>
-  	#mapid { height: 450px; width: 800px; margin-left: auto; margin-right: auto; }
+  	#mapid { height: 450px; width: 800px; }
+  	.center { margin-left: auto; margin-right: auto; }
   </style>
 
 </head>
 
 <body>
-	 <div id="mapid"></div>
+	 <div id="mapid" class="center"></div>
+	 <p style="text-align:center;"><span id="my-coords"></span></p>
 
 	  <script type="text/javascript">
-	  	var mymap = L.map('mapid').setView([42.491, -71.239], 12);
+	  	var mymap = L.map('mapid').setView([42.533856237848525, -71.1134719848633], 12);
 
 		var NWSIcons = L.marker.NWS({
-						path: "GEOHuntsvilleIcons",
-						iconSizeArray: [[32, 32], [64, 64], [96, 96]],
+						path: "GeoHuntsvilleIcons",
+						iconSizeArray: [[16, 16], [64, 64], [128, 128]],
 						map: mymap
 					});
 
 		// test icon
-	  	var test = NWSIcons.create([42.491, -71.239], {}, "warning", "fire");
+	  	var fireWarning = NWSIcons.create([42.491, -71.239], {}, "warning", "fire");
+
+
+	  	var polygon = L.polygon([
+		    [42.48045, -71.24805],
+		    [42.56218, -71.24531],
+		    [42.55434, -71.12206],
+		    [42.51893, -71.15604],
+		    [42.5002, -71.19999]
+		]);
+
+		fireWarning.on('click', function(e){polygon.addTo(mymap)})
+
+		/*var lat = 42.491;
+		var lon = -71.239;
+	  	for ( typeOfIcon in NWSIcons._icons)
+	  		for ( name in NWSIcons._icons[typeOfIcon])
+	  			NWSIcons.create([lat+=0.005, lon+=0.014], {}, typeOfIcon, name);
+		*/
+
+
+
+		function onMapClick(e) {
+    		document.getElementById("my-coords").innerHTML = "You are here: " + e.latlng;
+		}
+
+		mymap.on('click', onMapClick);
+
+
 
 		L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoiamtpbGdvIiwiYSI6ImNpb29zZTNtbDAwMWF1cWtxMWg2Nm80enEifQ.GGjhjpGfyEqw04J_vwg03Q', {
 		    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
