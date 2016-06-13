@@ -76,18 +76,25 @@ L.Marker.NWS = L.Class.extend({
 
 	_createMarker : function (latlng, options, type, name) {
 		// make icon; should it be saved here? can we destroy it by just using var? test it out
-		var image_path = this.options.path + '/' + this._icons[type][name];
-		var icon = L.icon({
-			iconUrl : image_path,
+		this.icons.push(L.icon({
+			iconUrl : this.options.path + '/' + this._icons[type][name],
 			iconSizeArray : this.options.iconSizeArray
-		})
+		}))
 
-		options.icon = icon;
-		options.iconSizeArray = this.options.iconSizeArray;
+		this.markersOptions.push(options);
 
-		return L.autoResizeMarkerSVG(latlng, options)
+		this.markersOptions[this.icons.length-1].icon = this.icons[this.icons.length-1];
+		this.markersOptions[this.icons.length-1].iconSizeArray = this.options.iconSizeArray;
+
+		this.markers.push(L.autoResizeMarkerSVG(latlng, this.markersOptions[this.icons.length-1]));
+
+		return this.markers[this.markers.length-1].addTo(this.options.map)
 
 	},
+
+	icons : [],
+	markers : [],
+	markersOptions: [],
 
 })
 

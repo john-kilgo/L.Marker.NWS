@@ -22,13 +22,16 @@
 <body>
 	 <div id="mapid"></div>
 
-
 	  <script type="text/javascript">
 	  	var mymap = L.map('mapid').setView([42.491, -71.239], 12);
 
+	  	// test icon
+	  	var test = NWSIcons.create([42.491, -71.239], {}, "warning", "fire");
+
 		var NWSIcons = L.marker.NWS({
-						path: "GEOHuntsville/",
-						iconSizeArray: [[32, 32], [64, 64], [96, 96]]
+						path: "GEOHuntsvilleIcons",
+						iconSizeArray: [[32, 32], [64, 64], [96, 96]],
+						map: mymap
 					});
 
 		L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoiamtpbGdvIiwiYSI6ImNpb29zZTNtbDAwMWF1cWtxMWg2Nm80enEifQ.GGjhjpGfyEqw04J_vwg03Q', {
