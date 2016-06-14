@@ -47,34 +47,30 @@
 		fireWarning.on('mouseover',function(e){polygon.addTo(mymap)});
 		fireWarning.on('mouseout',function(e){polygon.remove()});
 
-		var index = 0;
 		var lat = 42.491;
 		var lon = -71.239;
-		var tmp_polygon = [];
+
 		var tmp = [];
 
 	  	for ( typeOfIcon in NWSIcons._icons)
 	  		for ( name in NWSIcons._icons[typeOfIcon]) {
 
+	  			var obj = {
+	  				polygon : L.polygon([
+		  				[lat+=0.010, lon-=0.010],
+		  				[lat+=0.010, lon-=0.020],
+		  				[lat+=0.020, lon-=0.010],
+		  				[lat+=0.020, lon-=0.020]
+	  				]),
+	  				marker : NWSIcons.create([lat+=0.005, lon+=0.014], {}, typeOfIcon, name)
+	  			};
 
-	  			tmp_polygon[index] = L.polygon([
-	  				[lat+0.010, lon-0.010],
-	  				[lat+0.010, lon-0.020],
-	  				[lat+0.020, lon-0.010],
-	  				[lat+0.020, lon-0.020]
-	  				]);
+				obj.marker.on('mouseover',function(e){this.polygon.addTo(mymap)});
+				obj.marker.on('mouseout',function(e){this.polygon.remove()});
 
-	  			tmp[index] = NWSIcons.create([lat+=0.005, lon+=0.014], {}, typeOfIcon, name);
+				tmp.push(obj);
 
-	  			tmp[index].on('mouseover',function(e){tmp_polygon[index].addTo(mymap)});
-				tmp[index].on('mouseout',function(e){tmp_polygon[index].remove()});
-
-				index++;
 			}
-	
-
-		tmp[0].on('mouseover',function(e){tmp_polygon[0].addTo(mymap)});
-		tmp[0].on('mouseout',function(e){tmp_polygon[0].remove()});
 		
 		function onMapClick(e) {
     		document.getElementById("my-coords").innerHTML = "You are here: " + e.latlng;
