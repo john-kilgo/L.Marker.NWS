@@ -51,12 +51,10 @@
 		var lon = -71.239;
 	  	lat = lat + 0.005 + 0.005;
 	  	lon = lon + 0.014 + 0.01
-	//var tmp = [];
 
 	  	for ( typeOfIcon in NWSIcons._icons) {
 	  		for ( name in NWSIcons._icons[typeOfIcon]) {
 
-	  			//console.log("looped: ", typeOfIcon, " : ", name);
 	  			console.log(lat, lon);
 	  			var obj = {
 	  				polygon : L.polygon([
@@ -91,21 +89,6 @@
 	  			console.log(obj)
 	  			console.log("after");
 
-	  			//console.log(obj.polygon);
-/*				obj.marker.on('mouseover',function(e){
-					var _poly = obj.polygon;
-					//var _poly = polygon;
-					console.log('mouseover detected');
-					_poly.addTo(mymap);
-				});
-				obj.marker.on('mouseout',function(e){
-					var _poly = obj.polygon;
-					//var _poly = polygon;
-					console.log('mouseout detected');
-					_poly.remove();
-				});
-*/
-				//tmp.push(obj);
 	  		}
 	  	};
 
