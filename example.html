@@ -33,7 +33,7 @@
 						map: mymap
 					});
 
-		// test icon
+		// Test icon for binding a polygon
 	  	var fireWarning = NWSIcons.create([42.491, -71.239], {}, "warning", "fire");
 
 	  	var polygon = L.polygon([
@@ -49,51 +49,20 @@
 
 		var lat = 42.491;
 		var lon = -71.239;
-	  	lat = lat + 0.005 + 0.005;
-	  	lon = lon + 0.014 + 0.01
+	  	lat += 0.005;
+	  	lon += 0.014;
 
 	  	for ( typeOfIcon in NWSIcons._icons) {
 	  		for ( name in NWSIcons._icons[typeOfIcon]) {
 
-	  			console.log(lat, lon);
 	  			var obj = {
-	  				polygon : L.polygon([
-		  				[lat+0.00, lon-0.00],
-		  				[lat+0.00, lon-0.040],
-		  				[lat-0.040, lon-0.040],
-		  				[lat-0.040, lon-0.00]
-	  				]),
 	  				marker : NWSIcons.create([lat, lon], {}, typeOfIcon, name),
-	  				bind : function() {
-						this.marker.on('mouseover',function(e){
-							var _poly = obj.polygon;
-							//var _poly = polygon;
-							console.log('mouseover detected');
-							_poly.addTo(mymap);
-						})
-						this.marker.on('mouseout',function(e){
-							var _poly = obj.polygon;
-							//var _poly = polygon;
-							console.log('mouseout detected');
-							_poly.remove();
-						})
-					}
 				}
 
-				obj.bind();
-
-	  			console.log("item :", obj.lat, obj.lon, obj.polygon);
-	  			lat = lat + 0.005 + 0.005;
-	  			lon = lon + 0.014 + 0.014;
-	  			console.log(lat, lon);
-	  			console.log(obj)
-	  			console.log("after");
-
+	  			lat += 0.005;
+	  			lon += 0.014;
 	  		}
 	  	};
-
-		//console.log(tmp);
-		//console.log(mymap);
 		
 		function onMapClick(e) {
     		document.getElementById("my-coords").innerHTML = "You are here: " + e.latlng;

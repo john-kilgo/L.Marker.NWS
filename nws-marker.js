@@ -30,8 +30,6 @@ SOFTWARE.
 
 // Include marker-resize-svg.js in your HTML document
 
-
-
 // Path to SVG Icons from GEOHuntsville
 // example: var path = "my/path/to/L.Marker.NWS/GEOHuntsville"
 
@@ -48,7 +46,6 @@ L.Marker.NWS = L.Class.extend({
 			tornado : "StatementHurricaneOutlineHaloed.svg",
 			hurricane : "StatementHurricaneOutlineHaloed.svg",
 			tropicalStorm : "StatementTropicalStormOutlineHaloed.svg"
-
 		},
 		warning : {
 			evacuate : "warningEvacuateImmediatelyHaloed.svg",
@@ -87,11 +84,10 @@ L.Marker.NWS = L.Class.extend({
 		return L.autoResizeMarkerSVG(latlng, options).addTo(this.options.map);
 
 	},
-	icons : []
+	icons : [] /* Here for storing icons otherwise they seem to disappear */
 })
 
 
 L.marker.NWS = function (options) {
 	return new L.Marker.NWS(options);
 };
-
