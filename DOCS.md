@@ -5,8 +5,6 @@ This plugin (part of [QeoQ](https://github.com/ngageoint/geoq)) is used for disp
 ![](examples/Weather_Icons_On_Screen.png)
 Sources: Leaflet, OpenStreetMap, FEMA
 
-[TOC]
-
 #### Usage
 This is a leaflet plugin consisting of a plugin that extends L.GeoJson and a custom LayerGroup that extends L.LayerGroup.
 
@@ -40,7 +38,7 @@ The only required fields are Name and Type, all other fields can be left blank o
 
 There are two main pieces of the puzzle:
 1. L.NWSIconsLayer
-2. L.NWSLayerGroup
+1. L.NWSLayerGroup
 
 L.NWSIconsLayer extends L.GeoJSON, L.NWSLayerGroup extends L.LayerGroup.
 
