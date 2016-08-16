@@ -37,8 +37,8 @@ The only required fields are Name and Type, all other fields can be left blank o
 #### Coding Style
 
 There are two main pieces of the puzzle:
-1. L.NWSIconsLayer
-1. L.NWSLayerGroup
+- L.NWSIconsLayer
+- L.NWSLayerGroup
 
 L.NWSIconsLayer extends L.GeoJSON, L.NWSLayerGroup extends L.LayerGroup.
 
